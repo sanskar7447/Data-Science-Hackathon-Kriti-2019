@@ -120,6 +120,25 @@ print(y_test)
 
 
 # # Evaluating Metrics
+params = {}
+params['learning_rate'] = 0.029
+#params['boosting_type'] = 'gbdt'
+params['objective'] = 'gamma'
+params['metric'] = 'l2'
+params['sub_feature'] = 0.55
+params['num_leaves'] = 40
+params['min_data'] = 50
+#params['max_depth'] = 30
+print(params)
+import lightgbm as lgb
+from sklearn import metrics
+d_train = lgb.Dataset(x_train, label = y_train)
+clf = lgb.train( params,d_train, 100)
+#Prediction
+y_pred=clf.predict(x_test)
+mae_error = metrics.r2_score(y_test,y_pred)
+print(mae_error)
+#print(y_pred)
 
 
 
