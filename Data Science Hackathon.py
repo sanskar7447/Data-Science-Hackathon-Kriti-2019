@@ -119,7 +119,7 @@ print(x_test)
 print(y_test)
 
 
-# # Evaluating Metrics
+# # Evaluating Metrics            Using Lightgbm
 params = {}
 params['learning_rate'] = 0.029
 #params['boosting_type'] = 'gbdt'
@@ -139,12 +139,6 @@ y_pred=clf.predict(x_test)
 mae_error = metrics.r2_score(y_test,y_pred)
 print(mae_error)
 #print(y_pred)
-
-
-
-
-
-
 
 
 params = {}
@@ -168,8 +162,19 @@ y_pred =1.1* y_pred
 print(y_pred)
 
 
+#Using xgboost
+from xgboost import XGBRegressor
+
+model = XGBRegressor(learning_rate=0.05,max_depth=3,n_estimators=100,min_child_weight=1)
+model.fit(X, y)
+test_pred = model.predict(test)
+#predictions = [round(value) for value in test_pred]
+print(test_pred)
+
 
 
 
 print(pd.DataFrame(y_pred ))
+
+print(pd.DataFrame(test_pred ))
 
